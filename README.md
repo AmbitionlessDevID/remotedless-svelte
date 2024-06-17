@@ -1,4 +1,19 @@
-# create-svelte
+# RemotedLess
+
+## Intro
+
+Project ini dibuat untuk belajar SvelteKit fullstack.
+
+## Library
+
+- SvelteKit
+- Tailwind CSS
+- Flowbite-Svelte (UI Component)
+- Drizzle ORM & SQLite3
+- Zod schema validation
+- Superforms Svelte --> Form Library (this library is lit 🔥)
+- Vitest (unit test)
+- Playwright (E2E test)
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
