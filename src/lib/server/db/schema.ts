@@ -36,3 +36,5 @@ export const task = sqliteTable('task', {
 	createdBy: integer('creatorId').references(() => user.id),
 	projectId: integer('projectId').references(() => project.id)
 })
+
+
