@@ -1,6 +1,6 @@
 import { userSignupSchema } from '$lib/schema/userSchema';
-import { db } from '$lib/server/db/index.js';
-import { user } from '$lib/server/db/schema.js';
+import { db } from '$lib/server/db';
+import { user } from '$lib/server/db/schema';
 import { hash } from '@node-rs/argon2';
 import { fail } from '@sveltejs/kit';
 import { message } from 'sveltekit-superforms';
