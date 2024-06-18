@@ -13,3 +13,8 @@ export const userSignupSchema = userSchema.extend({
 export const userLoginSchema = userSchema.pick({ email: true }).extend({
 	password: z.string()
 });
+
+export interface ISessionUser {
+	id?: number;
+	authenticated: boolean;
+}
