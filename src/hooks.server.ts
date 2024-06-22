@@ -6,7 +6,6 @@ import { db } from '$lib/server/db';
 
 const handle: Handle = async ({ event, resolve }) => {
 	const authToken = event.cookies.get('authToken');
-	console.log(authToken);
 
 	event.locals.userSession = { authenticated: false };
 	if (authToken) {
@@ -20,6 +19,11 @@ const handle: Handle = async ({ event, resolve }) => {
 			}
 
 			const loggedUser = await db.query.user.findFirst({
+				columns: {
+					id: true,
+					name: true,
+					email: true
+				},
 				where: (user, { eq }) => eq(user.id, jwtUser.id)
 			});
 
@@ -29,7 +33,8 @@ const handle: Handle = async ({ event, resolve }) => {
 
 			const sessionUser = {
 				id: loggedUser.id,
-				authenticated: true
+				authenticated: true,
+				user: loggedUser
 			};
 
 			event.locals.userSession = sessionUser;
