@@ -1,10 +1,8 @@
 import { JWT_ACCESS_SECRET } from '$env/static/private';
 import { userLoginSchema } from '$lib/schema/userSchema';
 import { db } from '$lib/server/db/index.js';
-import { user } from '$lib/server/db/schema.js';
-import { hash, verify } from '@node-rs/argon2';
+import { verify } from '@node-rs/argon2';
 import { fail, redirect } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
 import { message } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
@@ -24,16 +22,8 @@ export const actions = {
 			return fail(400, { form });
 		}
 
-		const passwordHash = await hash(form.data.password, {
-			// recommended minimum parameters
-			memoryCost: 19456,
-			timeCost: 2,
-			outputLen: 32,
-			parallelism: 1
-		});
-
 		const existingUser = await db.query.user.findFirst({
-			where: eq(user.email, form.data.email)
+			where: (user, { eq }) => eq(user.email, form.data.email as string)
 		});
 
 		if (!existingUser) {
