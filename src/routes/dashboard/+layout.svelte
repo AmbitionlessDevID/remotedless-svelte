@@ -26,33 +26,37 @@
 </svelte:head>
 
 <div class="flex min-h-screen">
-	<div class="min-h-screen w-1/5">
+	<div class="h-full min-h-screen w-[300px]">
 		<Sidebar asideClass="w-full min-h-full">
 			<SidebarWrapper divClass="h-72 p-4 bg-gray-100 w-full h-screen">
 				<SidebarGroup>
 					<SidebarBrand {site} />
-					<SidebarItem label="Dashboard">
+					<SidebarItem href={'/dashboard'} label="Dashboard">
 						<svelte:fragment slot="icon">
 							<ChartPieSolid
 								class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
 							/>
 						</svelte:fragment>
 					</SidebarItem>
-					<SidebarDropdownWrapper label="E-commerce">
+					<SidebarItem href={'/dashboard/project'} label="Project">
 						<svelte:fragment slot="icon">
-							<CartSolid
+							<ChartPieSolid
 								class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
 							/>
 						</svelte:fragment>
-						<SidebarDropdownItem label="Products" />
-						<SidebarDropdownItem label="Billing" />
-						<SidebarDropdownItem label="Invoice" />
-					</SidebarDropdownWrapper>
+					</SidebarItem>
+					<SidebarItem href={'/dashboard/project'} label="Assigned Task">
+						<svelte:fragment slot="icon">
+							<ChartPieSolid
+								class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+							/>
+						</svelte:fragment>
+					</SidebarItem>
 				</SidebarGroup>
 			</SidebarWrapper>
 		</Sidebar>
 	</div>
-	<div class="w-full">
+	<div class="flex-grow px-4 pt-8">
 		<slot></slot>
 	</div>
 </div>
